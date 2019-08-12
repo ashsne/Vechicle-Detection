@@ -45,7 +45,7 @@ For the task of car detection I used *colorspace histograms* and *spatial featur
 
 HOG stands for *Histogram of Oriented Gradients* and refer to a powerful descriptor that has met with a wide success in the computer vision community, since its [introduction](http://vc.cs.nthu.edu.tw/home/paper/codfiles/hkchiu/201205170946/Histograms%20of%20Oriented%20Gradients%20for%20Human%20Detection.pdf) in 2005 with the main purpose of people detection. 
 
-![alt text][image3]
+![alt text][image2]
 
 
 ### 2. Training the classifier and classifiaction
@@ -69,13 +69,13 @@ svc.fit(X_train, y_train)
 In order to have an idea of the classifier performance, we can make a prediction on the test set with `svc.score(X_test, y_test)`. Training the SVM with the features explained above took around 10 minutes on my laptop. 
 
 ### 3. Sliding Window Search
-Firstly a naive sliding window detection was used, but unfortunately it was vey time consuming. 
+Firstly a naive sliding window detection was used, but unfortunately it was vey time consuming. So an alternate method was implemented with Region of Interest (ROI). Small windows are used towards horizon and keeping bigger ones toeards clode tho the car. FOr each such window features are extracteed and then passed through prediction of the vehicles. Such an example is shown below:
 
 ![alt text][image4]
 
 
 ### 4. Heatmaps
-
+As you can see there are multiple windows where cas is found. Also as accuracy is not 100%, we will have some mispredictions of the cars. To handle such events we pass these windows through the heatmap function. It creates heat signatures at the centroid of the window. With a threshold value of number of windows we can keep the windows we are interested.
 
 ![alt text][image5]
 
