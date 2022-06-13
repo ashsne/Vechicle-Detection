@@ -1,4 +1,4 @@
-# Vechicle-Detection
+# Vehicle-Detection
 
 [//]: # (Image References)
 
